@@ -1,16 +1,20 @@
 const prompt = require('prompt-sync')({ sigint: true });
 
-const HAT = '^'; // hat
-const HOLE = 'O'; // hole
-const SAFE = '░'; // field
-const PLAYER_PATH = '*'; // player path
+const HAT = '^';
+const HOLE = 'O';
+const SAFE = '░';
+const PLAYER_PATH = '*';
 
 class Field {
   constructor(field) {
     this._field = field
+    // FIXME
+    // error if there's no PLAYER_PATH on the field
+    // bug if PLAYER_PATH count > 1
     this._playerPos = this._getPos(PLAYER_PATH)
   }
 
+  // field is not guaranteed to be solvable 
   static generateField (rowCount, colCount, holePercentage = 10) {
     const field = []
 
